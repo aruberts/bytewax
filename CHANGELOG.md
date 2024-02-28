@@ -9,6 +9,9 @@ For help with updating to new Bytewax versions, please see the
 __Add any extra change notes here and we'll put them in the release
 notes on GitHub when we make a new release.__
 
+- Custom Python metrics can now be collected using the `prometheus-client`
+  library.
+
 - Adds `stateful_flat_map` operator.
 
 - *Breaking change* Removes `builder` argument from `stateful_map`.

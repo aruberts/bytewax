@@ -44,26 +44,20 @@ class RecoveryConfig:
     :type snapshot_serde: typing.Optional[bytewax.serde.Serde]
 
     """
+
     ...
 
-    def __init__(self, db_dir, backup_interval=None, snapshot_serde=None):
-        ...
-
+    def __init__(self, db_dir, backup_interval=None, snapshot_serde=None): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def snapshot_serde(self):
-        ...
-
+    def snapshot_serde(self): ...
     @property
-    def db_dir(self):
-        ...
-
+    def db_dir(self): ...
     @property
-    def backup_interval(self):
-        ...
+    def backup_interval(self): ...
 
 def run_main(flow, *, epoch_interval=None, recovery_config=None):
     """Execute a dataflow in the current thread.
@@ -104,7 +98,15 @@ def run_main(flow, *, epoch_interval=None, recovery_config=None):
     """
     ...
 
-def cluster_main(flow, addresses, proc_id, *, epoch_interval=None, recovery_config=None, worker_count_per_proc=1):
+def cluster_main(
+    flow,
+    addresses,
+    proc_id,
+    *,
+    epoch_interval=None,
+    recovery_config=None,
+    worker_count_per_proc=1,
+):
     """Execute a dataflow in the current process as part of a cluster.
 
     This is only used for unit testing. See `bytewax.run`.
@@ -160,10 +162,23 @@ def cluster_main(flow, addresses, proc_id, *, epoch_interval=None, recovery_conf
     """
     ...
 
-def cli_main(flow, *, workers_per_process=1, process_id=None, addresses=None, epoch_interval=None, recovery_config=None):
-    ...
-
-def test_cluster(flow, *, epoch_interval=None, recovery_config=None, processes=1, workers_per_process=1):
+def cli_main(
+    flow,
+    *,
+    workers_per_process=1,
+    process_id=None,
+    addresses=None,
+    epoch_interval=None,
+    recovery_config=None,
+): ...
+def test_cluster(
+    flow,
+    *,
+    epoch_interval=None,
+    recovery_config=None,
+    processes=1,
+    workers_per_process=1,
+):
     """Execute a Dataflow by spawning multiple Python processes.
 
     Blocks until execution is complete.
@@ -182,11 +197,10 @@ class TracingConfig:
     traces to go.
 
     """
+
     ...
 
-    def __init__(self):
-        ...
-
+    def __init__(self): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
@@ -199,6 +213,7 @@ class BytewaxTracer:
     This should only be built via `setup_tracing`.
 
     """
+
     ...
 
     def __new__(cls, *args, **kwargs):
@@ -218,6 +233,7 @@ def setup_tracing(tracing_config=None, log_level=None):
 
     ```python
     from bytewax.tracing import setup_tracing
+
     tracer = setup_tracing()
     ```
 
@@ -244,11 +260,10 @@ class ClockConfig:
     you'd like to use.
 
     """
+
     ...
 
-    def __init__(self):
-        ...
-
+    def __init__(self): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
@@ -262,22 +277,20 @@ class WindowConfig:
     you'd like to use.
 
     """
+
     ...
 
-    def __init__(self):
-        ...
-
+    def __init__(self): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
 class WindowMetadata:
     """Contains information about a window."""
+
     ...
 
-    def __init__(self, open_time, close_time):
-        ...
-
+    def __init__(self, open_time, close_time): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
@@ -323,6 +336,11 @@ class WindowMetadata:
         ...
 
     @property
+    def open_time(self):
+        """The time that the window starts."""
+        ...
+
+    @property
     def close_time(self):
         """The time that the window closes.
 
@@ -330,11 +348,6 @@ class WindowMetadata:
         change as new data is received.
 
         """
-        ...
-
-    @property
-    def open_time(self):
-        """The time that the window starts."""
         ...
 
 class Counter:
@@ -353,17 +366,15 @@ class Counter:
     :type labels: List[str]
 
     """
+
     ...
 
-    def __init__(self, name, description, labels):
-        ...
-
+    def __init__(self, name, description, labels): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
-    def add(self, /, labels):
-        ...
+    def add(self, /, labels): ...
 
 class Gauge:
     """Wrapper class for a Prometheus Gauge that can be called from Python.
@@ -381,17 +392,15 @@ class Gauge:
     :type labels: List[str]
 
     """
+
     ...
 
-    def __init__(self, name, description, labels):
-        ...
-
+    def __init__(self, name, description, labels): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
-    def set_val(self, /, val, labels):
-        ...
+    def set_val(self, /, val, labels): ...
 
 class Histogram:
     """Wrapper class for a Prometheus Histogram that can be called from Python.
@@ -413,20 +422,19 @@ class Histogram:
     :type labels: List[str]
 
     """
+
     ...
 
-    def __init__(self, name, description, labels, buckets=None):
-        ...
-
+    def __init__(self, name, description, labels, buckets=None): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
-    def observe(self, /, val, labels):
-        ...
+    def observe(self, /, val, labels): ...
 
 class AbortExecution(RuntimeError):
     """Raise this from `next_batch` to abort for testing purposes."""
+
     ...
 
 class InconsistentPartitionsError(ValueError):
@@ -442,10 +450,12 @@ class InconsistentPartitionsError(ValueError):
     continously failing on only some workers.
 
     """
+
     ...
 
 class MissingPartitionsError(FileNotFoundError):
     """Raised when an incomplete set of recovery partitions is detected."""
+
     ...
 
 class NoPartitionsError(FileNotFoundError):
@@ -454,6 +464,7 @@ class NoPartitionsError(FileNotFoundError):
     This is probably due to the wrong recovery directory being specified.
 
     """
+
     ...
 
 class JaegerConfig(TracingConfig):
@@ -482,26 +493,20 @@ class JaegerConfig(TracingConfig):
     :type sampling_ratio: float
 
     """
+
     ...
 
-    def __init__(self, service_name, endpoint=None, sampling_ratio=1.0):
-        ...
-
+    def __init__(self, service_name, endpoint=None, sampling_ratio=1.0): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def service_name(self):
-        ...
-
+    def sampling_ratio(self): ...
     @property
-    def endpoint(self):
-        ...
-
+    def service_name(self): ...
     @property
-    def sampling_ratio(self):
-        ...
+    def endpoint(self): ...
 
 class OtlpTracingConfig(TracingConfig):
     """Send traces to the OpenTelemetry collector.
@@ -529,26 +534,20 @@ class OtlpTracingConfig(TracingConfig):
     :type sampling_ratio: float
 
     """
+
     ...
 
-    def __init__(self, service_name, url=None, sampling_ratio=1.0):
-        ...
-
+    def __init__(self, service_name, url=None, sampling_ratio=1.0): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def url(self):
-        ...
-
+    def url(self): ...
     @property
-    def sampling_ratio(self):
-        ...
-
+    def service_name(self): ...
     @property
-    def service_name(self):
-        ...
+    def sampling_ratio(self): ...
 
 class EventClockConfig(ClockConfig):
     """Use a getter function to lookup the timestamp for each item.
@@ -576,22 +575,18 @@ class EventClockConfig(ClockConfig):
         to your windowing operator.
 
     """
+
     ...
 
-    def __init__(self, dt_getter, wait_for_system_duration):
-        ...
-
+    def __init__(self, dt_getter, wait_for_system_duration): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def wait_for_system_duration(self):
-        ...
-
+    def dt_getter(self): ...
     @property
-    def dt_getter(self):
-        ...
+    def wait_for_system_duration(self): ...
 
 class SystemClockConfig(ClockConfig):
     """Use the current system time as the timestamp for each item.
@@ -605,11 +600,10 @@ class SystemClockConfig(ClockConfig):
       your windowing operator.
 
     """
+
     ...
 
-    def __init__(self):
-        ...
-
+    def __init__(self): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
@@ -635,22 +629,18 @@ class TumblingWindow(WindowConfig):
         parameter to your windowing operator.
 
     """
+
     ...
 
-    def __init__(self, length, align_to):
-        ...
-
+    def __init__(self, length, align_to): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def align_to(self):
-        ...
-
+    def align_to(self): ...
     @property
-    def length(self):
-        ...
+    def length(self): ...
 
 class SlidingWindow(WindowConfig):
     """Sliding windows of fixed duration.
@@ -686,26 +676,20 @@ class SlidingWindow(WindowConfig):
         parameter to your windowing operator.
 
     """
+
     ...
 
-    def __init__(self, length, offset, align_to):
-        ...
-
+    def __init__(self, length, offset, align_to): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def offset(self):
-        ...
-
+    def offset(self): ...
     @property
-    def align_to(self):
-        ...
-
+    def length(self): ...
     @property
-    def length(self):
-        ...
+    def align_to(self): ...
 
 class SessionWindow(WindowConfig):
     """Session windowing with a fixed inactivity gap.
@@ -739,15 +723,13 @@ class SessionWindow(WindowConfig):
         parameter to your windowing operator.
 
     """
+
     ...
 
-    def __init__(self, gap):
-        ...
-
+    def __init__(self, gap): ...
     def __new__(cls, *args, **kwargs):
         """Create and return a new object.  See help(type) for accurate signature."""
         ...
 
     @property
-    def gap(self):
-        ...
+    def gap(self): ...
