@@ -55,9 +55,9 @@ class RecoveryConfig:
     @property
     def snapshot_serde(self): ...
     @property
-    def db_dir(self): ...
-    @property
     def backup_interval(self): ...
+    @property
+    def db_dir(self): ...
 
 def run_main(flow, *, epoch_interval=None, recovery_config=None):
     """Execute a dataflow in the current thread.
@@ -336,11 +336,6 @@ class WindowMetadata:
         ...
 
     @property
-    def open_time(self):
-        """The time that the window starts."""
-        ...
-
-    @property
     def close_time(self):
         """The time that the window closes.
 
@@ -350,87 +345,10 @@ class WindowMetadata:
         """
         ...
 
-class Counter:
-    """Wrapper class for a Prometheus Counter that can be called from Python.
-
-    :arg name: Name for the meter, will automatically be prefixed with `bytewax_`.
-
-    :type name: str
-
-    :arg description: Description text to be used for the meter.
-
-    :type description: str
-
-    :arg labels: A list of of labels be used when recording values.
-
-    :type labels: List[str]
-
-    """
-
-    ...
-
-    def __init__(self, name, description, labels): ...
-    def __new__(cls, *args, **kwargs):
-        """Create and return a new object.  See help(type) for accurate signature."""
+    @property
+    def open_time(self):
+        """The time that the window starts."""
         ...
-
-    def add(self, /, labels): ...
-
-class Gauge:
-    """Wrapper class for a Prometheus Gauge that can be called from Python.
-
-    :arg name: Name for the meter, will automatically be prefixed with `bytewax_`.
-
-    :type name: str
-
-    :arg description: Description text to be used for the meter.
-
-    :type description: str
-
-    :arg labels: A list of of labels be used when recording values.
-
-    :type labels: List[str]
-
-    """
-
-    ...
-
-    def __init__(self, name, description, labels): ...
-    def __new__(cls, *args, **kwargs):
-        """Create and return a new object.  See help(type) for accurate signature."""
-        ...
-
-    def set_val(self, /, val, labels): ...
-
-class Histogram:
-    """Wrapper class for a Prometheus Histogram that can be called from Python.
-
-    :arg name: Name for the histogram, will automatically be prefixed with `bytewax_`.
-
-    :type name: str
-
-    :arg description: Description text to be used for the histogram.
-
-    :type description: str
-
-    :arg labels: A list of labels to be used when recording values.
-
-    :type description: List[str]
-
-    :arg labels: A list of labels be used when recording values.
-
-    :type labels: List[str]
-
-    """
-
-    ...
-
-    def __init__(self, name, description, labels, buckets=None): ...
-    def __new__(cls, *args, **kwargs):
-        """Create and return a new object.  See help(type) for accurate signature."""
-        ...
-
-    def observe(self, /, val, labels): ...
 
 class AbortExecution(RuntimeError):
     """Raise this from `next_batch` to abort for testing purposes."""
@@ -502,11 +420,11 @@ class JaegerConfig(TracingConfig):
         ...
 
     @property
-    def sampling_ratio(self): ...
-    @property
     def service_name(self): ...
     @property
     def endpoint(self): ...
+    @property
+    def sampling_ratio(self): ...
 
 class OtlpTracingConfig(TracingConfig):
     """Send traces to the OpenTelemetry collector.
@@ -545,9 +463,9 @@ class OtlpTracingConfig(TracingConfig):
     @property
     def url(self): ...
     @property
-    def service_name(self): ...
-    @property
     def sampling_ratio(self): ...
+    @property
+    def service_name(self): ...
 
 class EventClockConfig(ClockConfig):
     """Use a getter function to lookup the timestamp for each item.
@@ -638,9 +556,9 @@ class TumblingWindow(WindowConfig):
         ...
 
     @property
-    def align_to(self): ...
-    @property
     def length(self): ...
+    @property
+    def align_to(self): ...
 
 class SlidingWindow(WindowConfig):
     """Sliding windows of fixed duration.
@@ -685,11 +603,11 @@ class SlidingWindow(WindowConfig):
         ...
 
     @property
-    def offset(self): ...
+    def align_to(self): ...
     @property
     def length(self): ...
     @property
-    def align_to(self): ...
+    def offset(self): ...
 
 class SessionWindow(WindowConfig):
     """Session windowing with a fixed inactivity gap.
