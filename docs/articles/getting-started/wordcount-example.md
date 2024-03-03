@@ -17,10 +17,7 @@ And by opposing end them.
 And a copy of the code in a file called `wordcount.py`.
 
 ```python
-import operator
 import re
-
-from datetime import timedelta, datetime, timezone
 
 from bytewax.dataflow import Dataflow
 import bytewax.operators as op
